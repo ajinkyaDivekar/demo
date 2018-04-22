@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>wizard</title>
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+
+<style>
+.wizard{
+  padding:20px;
+  margin:20px;
+}
+.checkout-wrap {
+    font-family: 'PT Sans Caption', sans-serif;
+    margin: 30px auto 100px;
+    z-index: 0;
+}
+ul.checkout-bar li {
+    color: #ccc;
+    font-size: 16px;
+    font-weight: 600;
+    position: relative;
+    display: inline-block;
+    margin: 50px auto;
+    padding: 0;
+    text-align: center;
+    width: 8%;
+   word-break: break-all;
+}
+ul.checkout-bar li:before {
+    -webkit-box-shadow: inset 2px 2px 2px 0px rgba(0, 0, 0, 0.2);
+    box-shadow: inset 2px 2px 2px 0px rgba(0, 0, 0, 0.2);
+    background: #ddd;
+    border: 2px solid #FFF;
+    border-radius: 50%;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 700;
+    text-align: center;
+    text-shadow: 1px 1px rgba(0, 0, 0, 0.2);
+    height: 34px;
+    left: 40%;
+    line-height: 34px;
+    position: absolute;
+    top: -60px;
+    width: 34px;
+    z-index: 99999;
+    left: 0px;
+}
+ul.checkout-bar li.active {
+  color: #A6447A;
+  font-weight: bold;
+}
+ul.checkout-bar li.active:before {
+  background: #A6447A;
+}
+ul.checkout-bar li.visited {
+  color: #B1222F;
+  z-index: 99999;    
+  background: none;
+}
+ul.checkout-bar li.visited:before {
+  background: #B1222F;
+  z-index: 99999;
+}
+ul.checkout-bar li:nth-child(1):before {
+  content: "1";
+
+}
+ul.checkout-bar li:nth-child(2):before {
+  content: "2";
+}
+ul.checkout-bar li:nth-child(3):before {
+  content: "3";
+}
+ul.checkout-bar li:nth-child(4):before {
+  content: "4";
+}
+ul.checkout-bar li:nth-child(5):before {
+  content: "5";
+}
+ul.checkout-bar li:nth-child(6):before {
+  content: "6";
+}
+ul.checkout-bar li:nth-child(7):before {
+  content: "7";
+}
+ul.checkout-bar li:nth-child(8):before {
+  content: "8";
+}
+ul.checkout-bar li:nth-child(9):before {
+  content: "9";
+}
+
+ul.checkout-bar li:nth-child(10):before {
+  content: "10";
+}
+
+ul.checkout-bar li:nth-child(11):before {
+  content: "11";
+}
+
+ul.checkout-bar li:nth-child(12):before {
+  content: "12";
+}
+
+ul.checkout-bar li:nth-child(13):before {
+  content: "13";
+}
+ul.checkout-bar a {
+  color: #ccc;
+  font-size: 16px;
+  font-weight: 600;
+  text-decoration: none;
+}
+ul.checkout-bar li.active a {
+  color: #A6447A;
+}
+ul.checkout-bar li.visited a {
+  color: #B1222F;
+}
+.checkout-bar li.active:after {
+    -webkit-animation: myanimation 3s 0;
+    background-size: 35px 35px;
+    background-color: #A6447A;
+    background-image: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, 0.2) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0.2) 75%, transparent 75%, transparent);
+    background-image: -moz-linear-gradient(-45deg, rgba(255, 255, 255, 0.2) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0.2) 75%, transparent 75%, transparent);
+    -webkit-box-shadow: inset 2px 2px 2px 0px rgba(0, 0, 0, 0.2);
+    box-shadow: inset 2px 2px 2px 0px rgba(0, 0, 0, 0.2);
+    content: "";
+    height: 15px;
+    width: 100%;
+    left: 30%;
+    position: absolute;
+    top: -50px;
+    z-index: 0;
+    border-bottom-right-radius: 15px;
+    border-top-right-radius: 15px;
+  
+  }
+ul.checkout-bar {
+    -webkit-box-shadow: inset 2px 2px 2px 0px rgba(0, 0, 0, 0.2);
+    box-shadow: inset 2px 2px 2px 0px rgba(0, 0, 0, 0.2);
+    background-size: 35px 35px;
+    background-color: #EcEcEc;
+    background-image: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, 0.4) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.4) 50%, rgba(255, 255, 255, 0.4) 75%, transparent 75%, transparent);
+    background-image: -moz-linear-gradient(-45deg, rgba(255, 255, 255, 0.4) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.4) 50%, rgba(255, 255, 255, 0.4) 75%, transparent 75%, transparent);
+    border-radius: 15px;
+    height: 15px;
+    margin: 0 -15px 0;
+    padding: 0;
+    position: absolute;
+    width: 98%;
+  }
+ul.checkout-bar:before {
+    background-size: 35px 35px;
+    /*background-color: #B1222F;*/
+    background-image: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, 0.2) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0.2) 75%, transparent 75%, transparent);
+    background-image: -moz-linear-gradient(-45deg, rgba(255, 255, 255, 0.2) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0.2) 75%, transparent 75%, transparent);
+    -webkit-box-shadow: inset 2px 2px 2px 0px rgba(0, 0, 0, 0.2);
+    box-shadow: inset 2px 2px 2px 0px rgba(0, 0, 0, 0.2);
+    border-radius: 15px;
+    content: " ";
+    height: 15px;
+    left: 0;
+    position: absolute;
+    width: 14%;
+  }
+  ul.checkout-bar li.visited:after {
+    background-size: 35px 35px;
+    background-color: #B1222F;
+    background-image: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, 0.2) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0.2) 75%, transparent 75%, transparent);
+    background-image: -moz-linear-gradient(-45deg, rgba(255, 255, 255, 0.2) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0.2) 75%, transparent 75%, transparent);
+    -webkit-box-shadow: inset 2px 2px 2px 0px rgba(0, 0, 0, 0.2);
+    box-shadow: inset 2px 2px 2px 0px rgba(0, 0, 0, 0.2);
+    content: "";
+    height: 15px;
+    left: 50%;
+    position: absolute;
+    top: -50px;
+    width: 100%;
+    z-index: 99;
+    left: 30%;
+    border-bottom-right-radius: 15px;
+    border-top-right-radius: 15px;
+  }
+  ul.checkout-bar li.visited:nth-last-child:after {
+    background-size: 35px 35px;
+    background-color: #B1222F;
+    background-image: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, 0.2) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0.2) 75%, transparent 75%, transparent);
+    background-image: -moz-linear-gradient(-45deg, rgba(255, 255, 255, 0.2) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0.2) 75%, transparent 75%, transparent);
+    -webkit-box-shadow: inset 2px 2px 2px 0px rgba(0, 0, 0, 0.2);
+    box-shadow: inset 2px 2px 2px 0px rgba(0, 0, 0, 0.2);
+    content: "";
+    height: 15px;
+    left: 50%;
+    position: absolute;
+    top: -50px;
+    width:  0% !important;
+    z-index: 99;
+    left: 30%;
+    border-bottom-right-radius: 15px;
+    border-top-right-radius: 15px;
+  }
+  .nextBtn,.prevBtn{
+      margin-top: 100px;
+
+  }
+
+  header{
+    background: #AF2230;
+  }
+  .img-adj{
+width: 12%;
+  }
+
+  h1{
+      text-align: center;
+  }
+
+  .abc{
+    display: none;
+  }
+</style>
+
+</head>
+
+<body>
+
+        <header class="header">
+                <div class="container">
+                <div class="logo">
+                <a href="/en" title="Home" rel="home">
+                <img class="img-adj" src="logo.webp" alt="Ijarah" data-pagespeed-url-hash="2364962485" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
+                </a>
+                </div>
+                <!-- <div class="main-menu">
+                <div class="nav">
+                
+                </div>
+                <div class="languages-box">
+                <ul class="option-list">
+                <li>
+                <div class="polyglot-language-switcher" data-grid-columns="1" data-anim-effect="slide" data-open-mode="hover"><a href="#" title="Arabic" class="ar_lang pls-selected-locale" data-lang-id="en_US"> عربي</a><div class="pls-language-container-scrollable" style="display: none;"><table class="pls-language-container"><tbody><tr><td><ul><li><a href="/" title="Arabic" class="ar_lang pls-selected-locale" data-lang-id="en_US"> عربي</a></li><li><a href="/en" title="English (US)" data-lang-id="ar"> English</a></li></ul></td></tr></tbody></table></div></div>
+                </li>
+                </ul>
+                </div>
+                </div> -->
+                </div>
+                <div class="clear"></div>
+                </header>
+
+                <div class="wizard">
+
+<div class="row "> 
+  <divclass="col-md-12 col-sm-12 col-xs-12">
+
+      
+</div> 
+  <div class="checkout-wrap col-md-12 col-sm-12 col-xs-12 ">
+        <ul class="checkout-bar">
+                <li class=""><a href="#get-started"  class="abc" title="Get Started" data-toggle="tab">Approved</a></li>
+                <li class="disabled"><a href="#about-you"  title="Pre-Approved" class="abc" disabled="disabled" data-toggle="tab">
+                    documents</a></li>
+                <li class="disabled"><a href="#looking-for"  title="Documents Verification" class="abc" disabled="disabled" data-toggle="tab"> Approved</a></li>
+                <li class="disabled"><a href="#4" class="abc"  title="Approved" disabled="disabled" data-toggle="tab">Purchase</a></li>
+                <li class="disabled"><a href="#5" class="abc"  title="Pending Purchase Order" disabled="disabled" data-toggle="tab">Card </a></li>
+                <li class="disabled"><a href="#6" class="abc"  title="Pending Green Card" disabled="disabled" data-toggle="tab"> Preparation</a></li>
+                <li class="disabled"><a href="#7" class="abc"  title="Contract Preparation" disabled="disabled" data-toggle="tab">Documents </a></li>
+                <li class="disabled"><a href="#8" class="abc"  title="Documents Ready to be Signed" disabled="disabled" data-toggle="tab">Insurance  </a></li>
+                <li class="disabled"><a href="#9" class="abc"  title="Pending Insurance" disabled="disabled" data-toggle="tab">Registration</a></li>
+                <li class="disabled"><a href="#10" class="abc"  title="Pending Car Registration" disabled="disabled" data-toggle="tab">Delivered</a></li>
+                <li class="disabled"><a href="#11" class="abc"  title="Ready to be Delivered" disabled="disabled" data-toggle="tab">  Archiving</a></li>
+                <li class="disabled"><a href="#12" class="abc"  title="Closed – Complete" disabled="disabled" data-toggle="tab">Complete</a></li>
+                <!-- <li class=""><a href="#get-started"  title="Get Started" data-toggle="tab">Get Started</a></li> -->
+              </ul>
+  </div>
+</div>
+<div class="row"> 
+  <div class="tabbable-panel">
+    <div class="tabbable-line">
+      <!-- <ul class="nav nav-tabs ">
+        <li class="active"><a href="#get-started" data-toggle="tab"> Get Started </a></li>
+        <li><a href="#about-you" data-toggle="tab"> About You </a></li>
+        <li><a href="#looking-for" data-toggle="tab"> Looking For </a></li>
+        
+      </ul> -->
+      <br/><br/><br/><br/>
+    <hr/>
+      <div class="tab-content wizard ">
+        <div class="tab-pane active setup-content" id="get-started">
+          <div class="form">
+           
+            <h1>Pre-Approved</h1>
+            <!-- <button class="btn btn-primary prevBtn pull-left" type="button">prev</button> -->
+            <button class="btn btn-primary nextBtn pull-right" type="button">Next</button>
+          </div>
+        </div>
+        <div class="tab-pane setup-content" id="about-you">
+          <div class="form">
+            
+            <h1>Documents Verification</h1>
+            <div id="uplaodFile">
+                <!-- <input type="file" id="submitfile" onSubmit="handleFile()"/> -->
+                <input type='file' id="submitfile" onchange="readURL(this);" />
+                <img id="blah" src="#" alt="your image" />  
+            </div>
+            <div>
+                <img src=""/>
+            </div>
+            <!-- <button class="btn btn-primary prevBtn pull-left" type="button">prev</button> -->
+            <button class="btn btn-primary nextBtn pull-right" type="button">Next</button>
+          </div>
+
+        </div>
+        <div class="tab-pane setup-content" id="looking-for">
+          <div class="form">
+            <h1>Approved</h1>
+            <!-- <button class="btn btn-primary prevBtn pull-left" type="button">prev</button> -->
+            <button class="btn btn-primary nextBtn pull-right" type="button">Next</button> 
+          </div>    
+        </div>
+        <div class="tab-pane setup-content" id="4">
+          <div class="form">
+           
+            <h1>Pending Purchase Order</h1>
+            <!-- <button class="btn btn-primary prevBtn pull-left" type="button">prev</button> -->
+            <button class="btn btn-primary nextBtn pull-right" type="button">Next</button>
+          </div>
+        </div>
+        <div class="tab-pane setup-content" id="5">
+          <div class="form">
+           
+            <h1>Pending Green Card</h1>
+            <!-- <button class="btn btn-primary prevBtn pull-left" type="button">prev</button> -->
+            <button class="btn btn-primary nextBtn pull-right" type="button">Next</button>
+          </div>
+        </div>
+        <div class="tab-pane setup-content" id="6">
+          <div class="form">
+           
+            <h1>Contract Preparation</h1>
+            <button class="btn btn-primary nextBtn pull-right" type="button">Next</button>
+          </div>
+        </div>
+        <div class="tab-pane setup-content" id="7">
+          <div class="form">
+           
+            <h1>Documents Ready to be Signed</h1>
+            <button class="btn btn-primary nextBtn pull-right" type="button">Next</button>
+          </div>
+        </div>
+        <div class="tab-pane setup-content" id="8">
+            <div class="form">
+             
+              <h1>Pending Insurance</h1>
+              <button class="btn btn-primary nextBtn pull-right" type="button">Next</button>
+            </div>
+          </div>
+          <div class="tab-pane setup-content" id="9">
+            <div class="form">
+             
+              <h1>Pending Car Registration</h1>
+              <button class="btn btn-primary nextBtn pull-right" type="button">Next</button>
+            </div>
+          </div>
+          <div class="tab-pane setup-content" id="10">
+            <div class="form">
+             
+              <h1>Ready to be Delivered</h1>
+              <button class="btn btn-primary nextBtn pull-right" type="button">Next</button>
+            </div>
+          </div>
+          <div class="tab-pane setup-content" id="11">
+            <div class="form">
+             
+              <h1>Archiving</h1>
+              <button class="btn btn-primary nextBtn pull-right" type="button">Next</button>
+            </div>
+          </div>
+          <div class="tab-pane setup-content" id="12">
+            <div class="form">
+             
+              <h1>Closed – Complete</h1>
+              <button class="btn btn-primary nextBtn pull-right" type="button">Next</button>
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- <button class="btn btn-primary nextBtn pull-right" type="button">Next</button> -->
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+
+<script>
+$(document).ready(function () {
+  var navListItems = $('div.checkout-wrap ul li a'),
+        allWells = $('.setup-content'),
+        allNextBtn = $('.nextBtn');
+        allPrevBtn = $('.prevBtn');
+
+        // allWells.hide();
+        var navListItemsli = $('div.checkout-wrap ul li')[0];
+        
+         var test=$("ul.checkout-bar")
+          console.log("test",test)
+         $(navListItemsli).addClass('active');
+         $("ul.checkout-bar:before").css({'background-color':"pink"});
+
+        //   var temp = $(test).pseudo(":before","background-color","pink")
+            //  console.log("test",temp)
+         // navListItemsli.addClass('active');
+//   $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+// console.log(e,"ee")
+//     if (".nav-tabs") hasClass(".active"); {
+//       $(".checkout-bar li").addClass("active");
+//     }
+//   });
+
+function handleFile(){
+var imgFile = document.getElementById('submitfile');
+if (imgFile.files && imgFile.files[0]) {
+    var width;
+    var height;
+    var fileSize;
+    var reader = new FileReader();
+    reader.onload = function(event) {
+        var dataUri = event.target.result,
+        img = document.createElement("img");
+        img.src = dataUri;
+        width = img.width;
+        height = img.height;
+        fileSize = imgFile.files[0].size;
+        alert(width);
+        alert(height);
+        alert(fileSize);
+   };
+   reader.onerror = function(event) {
+       console.error("File could not be read! Code " + event.target.error.code);
+   };
+   reader.readAsDataURL(imgFile.files[0]);
+}
+}
+
+
+// $("#submitfile").click(function (input) {
+//         if (input.files && input.files[0]) {
+//             var reader = new FileReader();
+
+//             reader.onload = function (e) {
+//                 $('#blah')
+//                     .attr('src', e.target.result)
+//                     .width(150)
+//                     .height(200);
+//             };
+
+//             reader.readAsDataURL(input.files[0]);
+//         }
+//     })
+
+  navListItems.click(function (e) {
+    console.log("eeeeeee")
+        e.preventDefault();
+        var $target = $($(this).attr('href')),
+            $item = $(this);
+
+        if (!$item.hasClass('disabled')) {
+            // navListItems.removeClass('disabled').addClass('visited');
+            // $item.addClass('visited');
+            allWells.hide();
+            $target.show();
+            $target.find('input:eq(0)').focus();
+        }
+    });
+
+    // $("div.checkout-wrap ul li.active" ).prev().addClass( "visited" );
+  allNextBtn.click(function () {
+
+      var test=$("div.checkout-wrap ul li");
+     var abc= $( "div.checkout-wrap ul li.active" ).find(".active" );
+
+     $("div.checkout-wrap ul li.active" ).addClass( "visited" );
+    if($("div.checkout-wrap ul li:last-child").hasClass("visited")){
+        allNextBtn.hide();
+    }
+
+        console.log("abc",abc)
+        var curStep = $(this).closest(".setup-content"),
+            curStepBtn = curStep.attr("id"),
+            nextStepWizard = $('div.checkout-wrap ul li a[href="#' + curStepBtn + '"]').parent().next().children("a"),
+            curInputs = curStep.find("input[type='text'],input[type='url']"),
+            isValid = true;
+            console.log(curStep);
+            console.log(curStepBtn);
+            console.log(nextStepWizard);
+            console.log(curInputs);
+
+        $(".form-group").removeClass("has-error");
+        for (var i = 0; i < curInputs.length; i++) {
+            if (!curInputs[i].validity.valid) {
+                isValid = false;
+                $(curInputs[i]).closest(".form-group").addClass("has-error");
+            }
+        }
+
+        if (isValid) nextStepWizard.removeAttr('disabled').trigger('click');
+    });
+
+
+    allPrevBtn.click(function () {
+      var test=$("div.checkout-wrap ul li");
+     var abc= $( "div.checkout-wrap ul li.active" ).find(".active" );
+
+     $("div.checkout-wrap ul li.active").removeClass( "visited" );
+
+        console.log("abc",abc)
+        var curStep = $(this).closest(".setup-content"),
+            curStepBtn = curStep.attr("id"),
+            nextStepWizard = $('div.checkout-wrap ul li a[href="#' + curStepBtn + '"]').parent().prev().children("a"),
+            curInputs = curStep.find("input[type='text'],input[type='url']"),
+            isValid = true;
+            // console.log(curStep);
+            // console.log(curStepBtn);
+            // console.log(nextStepWizard);
+            // console.log(curInputs);
+
+        $(".form-group").removeClass("has-error");
+        // for (var i = 0; i < curInputs.length; i++) {
+        //     if (!curInputs[i].validity.valid) {
+        //         isValid = false;
+        //         $(curInputs[i]).closest(".form-group").addClass("has-error");
+        //     }
+        // }
+
+        // if (isValid) nextStepWizard.removeAttr('disabled').trigger('click');
+    });
+
+});
+</script>
+
+<script>
+   function readURL(input) {
+
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#blah')
+                    .attr('src', e.target.result)
+                    .width(150)
+                    .height(200);
+            };
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+</script>
+
+
+
+</body>
+</html>
+
